@@ -19,11 +19,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'startDate' => 'datetime',
-        'endDate' => 'datetime',
-        'createdAt' => 'datetime',
-        'updatedAt' => 'datetime',
-        'deletedAt' => 'datetime'
+        'startDate' => 'datetime:Y-m-d H:i:s',
+        'endDate' => 'datetime:Y-m-d H:i:s',
+        'createdAt' => 'datetime:Y-m-d H:i:s',
+        'updatedAt' => 'datetime:Y-m-d H:i:s',
+        'deletedAt' => 'datetime:Y-m-d H:i:s'
     ];
 
     public function workEntries(){
