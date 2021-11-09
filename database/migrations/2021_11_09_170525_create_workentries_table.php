@@ -15,7 +15,14 @@ class CreateWorkentriesTable extends Migration
     {
         Schema::create('workentries', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('userId');
+            $table->dateTime('startDate');
+            $table->dateTime('endDate');
+            $table->dateTime('createdAt');
+            $table->dateTime('updatedAt');
+            $table->dateTime('deletedAt');
+            $table->foreign('userId')->references('id')->on('users');
+
         });
     }
 

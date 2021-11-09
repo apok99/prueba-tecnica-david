@@ -15,10 +15,12 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('email')->unique();
-            $table->timestamps();
-            $table->softDeletes($column = 'deleted_at', $precision = 0);
+            $table->string('name');
+            $table->string('email');
+            $table->dateTime('createdAt');
+            $table->dateTime('updatedAt');
+            $table->dateTime('deletedAt');
+            // $table->dateTime('createdAt');
         });
     }
 
