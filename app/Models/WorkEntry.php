@@ -9,17 +9,33 @@ class WorkEntry extends Model
 {
     use HasFactory;
 
+    protected $table = "workentries";
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
     */
     protected $fillable = [
-        'name',
-        'email'
+        'startDate',
+        'endDate'
     ];
 
+    protected $hidden = [
+        'userId',
+        'createdAt',
+        'updatedAt',
+        'deletedAt'
+    ];
+    
     public function user(){
-        $this->belongsTo('App\Models\User', 'userId');
+        return $this->belongsTo('App\Models\User', 'userId');
+    }
+
+    public function delete(){
+        $this->updatedAt = now();
+        $this->deletedAt = now();
+        $this->save();
+        return $this;
     }
 }

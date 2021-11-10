@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Carbon;
+
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -27,8 +29,14 @@ class User extends Authenticatable
         'deletedAt' => 'datetime:Y-m-d H:i:s'
     ];
 
+    protected $hidden = [
+        'createdAt',
+        'updatedAt',
+        'deletedAt'
+    ];
+
     public function workEntries(){
-        $this->hasMany('App\Models\WorkEntry');
+        return $this->hasMany('App\Models\WorkEntry');
     }   
     
     public function delete(){

@@ -15,11 +15,6 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    /**
-     *  
-     *  Get all users
-     * 
-     */
     public function index(){
         try {
             return response()->json(['error' => false, 'code' => 'ok', 'users' => $this->userService->getAll()], 200);
@@ -28,11 +23,7 @@ class UserController extends Controller
         }
     }
 
-    /**
-     *  
-     *  Create an user.
-     * 
-    */
+ 
     public function store(UserCreate $request){
         try {
             return response()->json(['error' => false, 'code' => 'ok', 'user' => $this->userService->create($request)], 200);
@@ -41,25 +32,15 @@ class UserController extends Controller
         }
     }
 
-    /**
-     *  
-     *  Update an user.
-     *  
-    */
     public function update(UserUpdate $request){
         try {
-            return response()->json(['error' => false, 'code' => 'ok', 'user' => $this->userService->update($request)], 200);
+            return response()->json(['error' => false, 'code' => 'ok', 'updated' => $this->userService->update($request)], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => true, 'code' => 'errorUpdate', 'message' => $e->getMessage() ], 500);
         }
     }
 
-    /**
-     *  
-     *  Delete an user
-     *  
-    */
-    public function delete(UserDelete $request){
+    public function destroy(UserDelete $request){
         try {
             return response()->json(['error' => false, 'code' => 'ok', 'deleted' => $this->userService->delete($request)], 200);
         } catch (\Exception $e) {
@@ -67,14 +48,9 @@ class UserController extends Controller
         }
     }
 
-    /**
-     *  
-     *  get User
-     *  
-    */
-    public function getUser(Request $request, $userId){
+    public function show(Request $request, $userId){
         try {
-            return response()->json(['error' => false, 'code' => 'ok', 'user' => $this->userService->getUser($userId    )], 200);
+            return response()->json(['error' => false, 'code' => 'ok', 'user' => $this->userService->getUser($userId)], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => true, 'code' => 'errorGettingUser', 'message' => $e->getMessage()], 500);
         }

@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 class UserRepository{
 
     public function getAll(){
-        return User::where('deleteAt', null)->all();
+        return User::where('deletedAt', null)->get();
     }
 
     public function create($user){
@@ -28,7 +28,7 @@ class UserRepository{
 
     public function update($user){
         try {
-            return User::where('id', $user->id)->update((Array) $user);
+            return User::where('id', $user->id)->update(array_merge((Array) $user),['updatedAt' => now()]);
         } catch (\Throwable $th) {
             throw new \Exception("Something went wrong on creating an user.");
         }
@@ -45,7 +45,7 @@ class UserRepository{
 
     public function getUser($id){
         try {
-            return User::where($id);
+            return User::where('deletedAt', null)->where('id', $id)->first();
         } catch (\Throwable $th) {
             throw new \Exception("Something went wrong on getting an user.");
         }
