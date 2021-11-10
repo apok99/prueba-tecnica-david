@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserCreate extends FormRequest
-{   
+class UserDelete extends FormRequest
+{
     protected $redirect = '/api/validator/errors';
 
     /**
@@ -26,18 +26,16 @@ class UserCreate extends FormRequest
     public function rules()
     {
         return [
-            'user.name' => 'required',
-            'user.email' => 'required|unique:App\Models\User,email|email',
+            'user.id' => 'required|exists:App\Models\User,id',
         ];
+
     }
 
     public function messages()
     {
         return [
-            'user.name.required' => 'A name is required.',
-            'user.email.required' => 'A email is required.',
-            'user.email.unique' => 'The email is already taken.',
-            'user.email.email' => 'Please enter a valid email address.'    
+            'user.id.required' => 'An user is required.',
+            'user.id.exists' => 'The user does not exist.',
         ];
     }
 }

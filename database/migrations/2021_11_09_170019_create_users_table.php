@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->dateTime('createdAt');
             $table->dateTime('updatedAt');
-            $table->dateTime('deletedAt');
+            $table->dateTime('deletedAt')->nullable();
             // $table->dateTime('createdAt');
         });
     }

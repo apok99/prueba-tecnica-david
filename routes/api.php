@@ -16,3 +16,12 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
+Route::get('/user/{id}', [UserController::class, 'getUser'])->where('id', '[0-9]+')->name('getUser');
+
+Route::post('/user', [UserController::class, 'store'])->name('createUser');
+Route::put('/user', [UserController::class, 'update'])->name('updateUser');
+Route::delete('/user', [UserController::class, 'delete'])->name('deleteUser');
+
+Route::get('/validator/errors', function (Request $request){
+    return response()->json(['error' => true, 'messages' => $request->session()->get('errors')->getBag('default')->getMessages()]);
+})->name('getValidatorErrors');
