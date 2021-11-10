@@ -7,3 +7,6 @@ Para iniciar el proyecto:
         docker run --rm -v $(pwd):/opt -w /opt laravelsail/php80-composer:latest composer update
         https://laravel.com/docs/8.x/sail#installing-composer-dependencies-for-existing-projects
     
+    php artisan migrate en la consola para poder insertar las tablas a la base de datos.
+
+    Configurar .env, ejemplo .env copy
